@@ -1,4 +1,4 @@
-﻿namespace FluxoCaixa.Domain
+﻿namespace FluxoCaixa.Domain.Models
 {
     public class Conta
     {
