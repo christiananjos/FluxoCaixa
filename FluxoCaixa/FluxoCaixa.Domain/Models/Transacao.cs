@@ -1,6 +1,6 @@
 ﻿namespace FluxoCaixa.Domain.Models
 {
-    public class Transacao
+    public class Transacao : ModelBase
     {
         public int TransacaoId { get; set; }
         public int ContaId { get; set; }
