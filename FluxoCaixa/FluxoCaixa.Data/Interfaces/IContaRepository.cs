@@ -2,9 +2,8 @@
 
 namespace FluxoCaixa.Data.Interfaces
 {
-    public interface IContaRepository
+    public interface IContaRepository  : IBaseRepository<Conta>
     {
-        Conta ObterPorId(int contaId);
-        void Atualizar(Conta conta);
+       
     }
 }

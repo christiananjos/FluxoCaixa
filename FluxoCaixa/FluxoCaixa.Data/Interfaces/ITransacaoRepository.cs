@@ -2,8 +2,8 @@
 
 namespace FluxoCaixa.Data.Interfaces
 {
-    public interface ITransacaoRepository
+    public interface ITransacaoRepository : IBaseRepository<Transacao>
     {
-        void Adicionar(Transacao transacao);
+       
     }
 }

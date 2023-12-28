@@ -24,7 +24,7 @@ namespace FluxoCaixa.Services.Services
                 Data = DateTime.Now
             };
 
-            _transacaoRepository.Adicionar(transacao);
+            _transacaoRepository.Add(transacao);
             _contaService.AtualizarSaldo(contaId, valor);
         }
     }

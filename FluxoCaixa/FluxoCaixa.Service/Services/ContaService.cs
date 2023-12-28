@@ -16,19 +16,20 @@ namespace FluxoCaixa.Services.Services
 
 
 
-        public decimal ObterSaldo(int contaId)
+        public async Task<decimal> ObterSaldo(int contaId)
         {
-            var conta = _contaRepository.ObterPorId(contaId);
+            var conta = await _contaRepository.GetById(contaId);
             return conta?.Saldo ?? 0;
         }
 
         public void AtualizarSaldo(int contaId, decimal valor)
         {
-            var conta = _contaRepository.ObterPorId(contaId);
+            var conta = _contaRepository.GetById(contaId).Result;
+            
             if (conta != null)
             {
                 conta.Saldo += valor;
-                _contaRepository.Atualizar(conta);
+                _contaRepository.Update(conta);
 
                 // Publicar mensagem no RabbitMQ para informar sobre a atualização de saldo
                 _rabbitMQService.PublicarMensagem($"Saldo atualizado para a conta {contaId}: {conta.Saldo}");
