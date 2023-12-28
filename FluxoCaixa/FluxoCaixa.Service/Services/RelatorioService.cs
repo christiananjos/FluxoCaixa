@@ -1,13 +1,13 @@
-﻿using FluxoCaixa.Data.Context;
+﻿using FluxoCaixa.Data;
 using FluxoCaixa.Services.Interfaces;
 
 namespace FluxoCaixa.Services.Services
 {
     public class RelatorioService : IRelatorioService
     {
-        private readonly DbContext _dbContext;
+        private readonly Context _dbContext;
 
-        public RelatorioService(DbContext dbContext)
+        public RelatorioService(Context dbContext)
         {
             _dbContext = dbContext;
         }

@@ -1,13 +1,14 @@
-﻿using FluxoCaixa.Data.Context;
-using FluxoCaixa.Data.Interfaces;
+﻿using FluxoCaixa.Data.Interfaces;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 
 namespace FluxoCaixa.Data.Repository
 {
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        protected readonly DbContext _dbContext;
+        protected readonly Context _dbContext;
 
-        protected BaseRepository(DbContext context)
+        protected BaseRepository(Context context)
         {
             _dbContext = context;
         }
@@ -22,9 +23,9 @@ namespace FluxoCaixa.Data.Repository
             return await _dbContext.Set<T>().ToListAsync();
         }
 
-        public async Task Add(T entity)
+        public void Add(T entity)
         {
-            await _dbContext.Set<T>().AddAsync(entity);
+            _dbContext.Set<T>().Add(entity);
         }
 
         public void Delete(T entity)
@@ -34,7 +35,7 @@ namespace FluxoCaixa.Data.Repository
 
         public void Update(T entity)
         {
-            _dbContext.Set<T>().Update(entity);
+            _dbContext.Set<T>().AddOrUpdate(entity);
         }
     }
 }

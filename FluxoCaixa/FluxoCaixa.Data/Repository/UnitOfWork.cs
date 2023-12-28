@@ -1,15 +1,14 @@
-﻿using FluxoCaixa.Data.Context;
-using FluxoCaixa.Data.Interfaces;
+﻿using FluxoCaixa.Data.Interfaces;
 
 namespace FluxoCaixa.Data.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DbContext _dbContext;
+        private readonly Context _dbContext;
         public IContaRepository Contas { get; }
         public ITransacaoRepository Transacoes { get; }
 
-        public UnitOfWork(DbContext dbContext, IContaRepository contas, ITransacaoRepository transacoes)
+        public UnitOfWork(Context dbContext, IContaRepository contas, ITransacaoRepository transacoes)
         {
             _dbContext = dbContext;
             Contas = contas;
