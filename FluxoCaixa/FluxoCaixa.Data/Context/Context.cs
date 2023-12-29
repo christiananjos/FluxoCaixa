@@ -1,12 +1,13 @@
 ﻿using FluxoCaixa.Domain.Models;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace FluxoCaixa.Data
 {
     public class Context : DbContext
     {
-        public Context(DbContextOptions<Context> contextoptions) : base(contextoptions)
+        public Context(DbContextOptions<Context> contextOptions) : base(contextOptions)
         {
+
         }
 
         public DbSet<Conta> Contas { get; set; }

@@ -1,6 +1,5 @@
 ﻿using FluxoCaixa.Data.Interfaces;
-using System.Data.Entity;
-using System.Data.Entity.Migrations;
+using Microsoft.EntityFrameworkCore;
 
 namespace FluxoCaixa.Data.Repository
 {
@@ -25,7 +24,7 @@ namespace FluxoCaixa.Data.Repository
 
         public void Add(T entity)
         {
-            _dbContext.Set<T>().Add(entity);
+            _dbContext.Set<T>().AddAsync(entity);
         }
 
         public void Delete(T entity)
@@ -35,7 +34,7 @@ namespace FluxoCaixa.Data.Repository
 
         public void Update(T entity)
         {
-            _dbContext.Set<T>().AddOrUpdate(entity);
+            _dbContext.Set<T>().Update(entity);
         }
     }
 }
