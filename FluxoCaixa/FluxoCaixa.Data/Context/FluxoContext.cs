@@ -11,6 +11,11 @@ namespace FluxoCaixa.Data
         public DbSet<Conta> Contas { get; set; }
         public DbSet<Transacao> Transacoes { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer($"Data Source=Christian;Initial Catalog=FluxoDB;Integrated Security=True");
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ContaConfiguration());
