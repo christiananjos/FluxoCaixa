@@ -21,8 +21,4 @@
     <ProjectReference Include="..\FluxoCaixa.Domain\FluxoCaixa.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ServiceExtension\" />
-  </ItemGroup>
-
 </Project>

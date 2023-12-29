@@ -1,4 +1,4 @@
-﻿namespace FluxoCaixa.Domain.Models
+﻿namespace FluxoCaixa.Domain.Entities
 {
     public class Transacao : ModelBase
     {

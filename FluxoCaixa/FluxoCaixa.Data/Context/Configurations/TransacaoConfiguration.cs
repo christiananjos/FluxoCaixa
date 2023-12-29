@@ -1,4 +1,4 @@
-﻿using FluxoCaixa.Domain.Models;
+﻿using FluxoCaixa.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

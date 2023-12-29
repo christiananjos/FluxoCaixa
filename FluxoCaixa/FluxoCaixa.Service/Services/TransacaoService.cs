@@ -1,8 +1,7 @@
 ﻿using FluxoCaixa.Data.Interfaces;
-using FluxoCaixa.Data.Repository;
-using FluxoCaixa.Domain.Models;
+using FluxoCaixa.Domain.Entities;
+using FluxoCaixa.Domain.Interfaces;
 using FluxoCaixa.Services.Interfaces;
-using System.Drawing;
 
 namespace FluxoCaixa.Services.Services
 {

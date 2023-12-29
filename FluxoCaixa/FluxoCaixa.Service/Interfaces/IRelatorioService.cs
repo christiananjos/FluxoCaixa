@@ -1,4 +1,4 @@
-﻿using FluxoCaixa.Domain.Models;
+﻿using FluxoCaixa.Domain.Entities;
 
 namespace FluxoCaixa.Services.Interfaces
 {

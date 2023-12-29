@@ -1,4 +1,5 @@
 ﻿using FluxoCaixa.Data.Interfaces;
+using FluxoCaixa.Domain.Interfaces;
 
 namespace FluxoCaixa.Data.Repository
 {

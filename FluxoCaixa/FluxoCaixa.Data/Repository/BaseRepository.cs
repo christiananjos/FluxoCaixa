@@ -1,4 +1,4 @@
-﻿using FluxoCaixa.Data.Interfaces;
+﻿using FluxoCaixa.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace FluxoCaixa.Data.Repository

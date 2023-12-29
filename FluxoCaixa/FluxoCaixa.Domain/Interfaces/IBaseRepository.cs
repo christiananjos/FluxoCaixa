@@ -1,4 +1,4 @@
-﻿namespace FluxoCaixa.Data.Interfaces
+﻿namespace FluxoCaixa.Domain.Interfaces
 {
     public interface IBaseRepository<T> where T : class
     {

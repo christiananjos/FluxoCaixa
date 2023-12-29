@@ -1,5 +1,5 @@
 ﻿using FluxoCaixa.Data.Context.Configurations;
-using FluxoCaixa.Domain.Models;
+using FluxoCaixa.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace FluxoCaixa.Data
