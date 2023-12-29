@@ -5,10 +5,7 @@ namespace FluxoCaixa.Data.Repository
 {
     public class TransacaoRepository : BaseRepository<Transacao>, ITransacaoRepository
     {
-        public TransacaoRepository(FluxoContext dbContext) : base(dbContext)
-        {
-
-        }
+        public TransacaoRepository(FluxoContext dbContext) : base(dbContext) { }
 
 
     }

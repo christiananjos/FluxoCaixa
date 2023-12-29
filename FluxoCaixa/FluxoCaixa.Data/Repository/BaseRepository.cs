@@ -7,10 +7,7 @@ namespace FluxoCaixa.Data.Repository
     {
         protected readonly FluxoContext _dbContext;
 
-        protected BaseRepository(FluxoContext context)
-        {
-            _dbContext = context;
-        }
+        protected BaseRepository(FluxoContext context) => _dbContext = context;
 
         public async Task<T> GetById(Guid id)
         {

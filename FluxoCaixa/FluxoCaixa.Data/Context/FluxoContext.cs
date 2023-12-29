@@ -6,6 +6,10 @@ namespace FluxoCaixa.Data
 {
     public class FluxoContext : DbContext
     {
+        public FluxoContext()
+        {
+            
+        }
         public FluxoContext(DbContextOptions<FluxoContext> contextOptions) : base(contextOptions) { }
 
         public DbSet<Conta> Contas { get; set; }
@@ -13,7 +17,7 @@ namespace FluxoCaixa.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer($"Data Source=Christian;Initial Catalog=FluxoDB;Integrated Security=True");
+            optionsBuilder.UseSqlServer($"Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=FluxoDB;Integrated Security=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

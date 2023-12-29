@@ -12,7 +12,7 @@ namespace FluxoCaixa.Data.Context.Configurations
             builder.Property(t => t.CreateAt)
                     .IsRequired()
                     .HasColumnType("Date")
-                    .HasDefaultValueSql("GetDate())");
+                    .HasDefaultValueSql("GetDate()");
         }
     }
 }

@@ -1,6 +1,5 @@
 using FluxoCaixa.Services.Interfaces;
 using FluxoCaixa.Services.Services;
-using FluxoCaixa.Data.ServiceExtension;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +9,6 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDIServices(builder.Configuration);
 builder.Services.AddScoped<IContaService, ContaService>();
 builder.Services.AddScoped<IRabbitMQService, RabbitMQService>();
 builder.Services.AddScoped<IRelatorioService, RelatorioService>();
