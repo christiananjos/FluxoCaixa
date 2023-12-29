@@ -1,4 +1,5 @@
 ﻿using FluxoCaixa.Data;
+using FluxoCaixa.Data.Interfaces;
 using FluxoCaixa.Domain.Models;
 using FluxoCaixa.Services.Interfaces;
 using System.Data.Entity;
@@ -7,11 +8,13 @@ namespace FluxoCaixa.Services.Services
 {
     public class RelatorioService : IRelatorioService
     {
-        private readonly Context _dbContext;
+        private readonly FluxoContext _dbContext;
+        public IUnitOfWork _unitOfWork;
 
-        public RelatorioService(Context dbContext)
+        public RelatorioService(FluxoContext dbContext, IUnitOfWork unitOfWork)
         {
             _dbContext = dbContext;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<List<Transacao>> GerarRelatorio(int contaId, DateTime startDate, DateTime endDate)

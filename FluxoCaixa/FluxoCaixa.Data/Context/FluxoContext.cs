@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FluxoCaixa.Data
 {
-    public class Context : DbContext
+    public class FluxoContext : DbContext
     {
-        public Context(DbContextOptions<Context> contextOptions) : base(contextOptions)
+        public FluxoContext(DbContextOptions<FluxoContext> contextOptions) : base(contextOptions)
         {
 
         }

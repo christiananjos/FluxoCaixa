@@ -37,5 +37,8 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
+  },
+  "ConnectionStrings": {
+    "DefaultConnection": "Data Source=Christian;Initial Catalog=FluxoDB;Integrated Security=True"
   }
 }

@@ -5,9 +5,9 @@ namespace FluxoCaixa.Data.Repository
 {
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        protected readonly Context _dbContext;
+        protected readonly FluxoContext _dbContext;
 
-        protected BaseRepository(Context context)
+        protected BaseRepository(FluxoContext context)
         {
             _dbContext = context;
         }

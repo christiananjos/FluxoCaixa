@@ -7,29 +7,32 @@ namespace FluxoCaixa.Services.Services
     {
         private readonly IContaRepository _contaRepository;
         private readonly IRabbitMQService _rabbitMQService;
+        public IUnitOfWork _unitOfWork;
 
-        public ContaService(IContaRepository contaRepository, IRabbitMQService rabbitMQService)
+        public ContaService(IContaRepository contaRepository, IRabbitMQService rabbitMQService, IUnitOfWork unitOfWork)
         {
             _contaRepository = contaRepository;
             _rabbitMQService = rabbitMQService;
+            _unitOfWork = unitOfWork;
         }
 
 
 
         public async Task<decimal> ObterSaldo(int contaId)
         {
-            var conta = await _contaRepository.GetById(contaId);
+            var conta = await _unitOfWork.Contas.GetById(contaId);
             return conta?.Saldo ?? 0;
         }
 
         public void AtualizarSaldo(int contaId, decimal valor)
         {
-            var conta = _contaRepository.GetById(contaId).Result;
+            var conta = _unitOfWork.Contas.GetById(contaId).Result;
             
             if (conta != null)
             {
                 conta.Saldo += valor;
-                _contaRepository.Update(conta);
+                _unitOfWork.Contas.Update(conta);
+                _unitOfWork.Save();
 
                 // Publicar mensagem no RabbitMQ para informar sobre a atualização de saldo
                 _rabbitMQService.PublicarMensagem($"Saldo atualizado para a conta {contaId}: {conta.Saldo}");

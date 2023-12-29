@@ -2,6 +2,6 @@
 {
     public interface ITransacaoService
     {
-        void RealizarTransacao(int contaId, decimal valor);
+        Task RealizarTransacao(int contaId, decimal valor);
     }
 }

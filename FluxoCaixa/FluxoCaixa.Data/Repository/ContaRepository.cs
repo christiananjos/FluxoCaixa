@@ -5,7 +5,7 @@ namespace FluxoCaixa.Data.Repository
 {
     public class ContaRepository : BaseRepository<Conta>, IContaRepository
     {
-        public ContaRepository(Context dbContext) : base(dbContext)
+        public ContaRepository(FluxoContext dbContext) : base(dbContext)
         {
 
         }

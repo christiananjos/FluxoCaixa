@@ -1,6 +1,8 @@
 ﻿using FluxoCaixa.Data.Interfaces;
+using FluxoCaixa.Data.Repository;
 using FluxoCaixa.Domain.Models;
 using FluxoCaixa.Services.Interfaces;
+using System.Drawing;
 
 namespace FluxoCaixa.Services.Services
 {
@@ -8,14 +10,16 @@ namespace FluxoCaixa.Services.Services
     {
         private readonly ITransacaoRepository _transacaoRepository;
         private readonly ContaService _contaService;
+        public IUnitOfWork _unitOfWork;
 
-        public TransacaoService(ITransacaoRepository transacaoRepository, ContaService contaService)
+        public TransacaoService(ITransacaoRepository transacaoRepository, ContaService contaService, IUnitOfWork unitOfWork)
         {
             _transacaoRepository = transacaoRepository;
             _contaService = contaService;
+            _unitOfWork = unitOfWork;
         }
 
-        public void RealizarTransacao(int contaId, decimal valor)
+        public async Task RealizarTransacao(int contaId, decimal valor)
         {
             var transacao = new Transacao
             {
@@ -24,7 +28,9 @@ namespace FluxoCaixa.Services.Services
                 Data = DateTime.Now
             };
 
-            _transacaoRepository.Add(transacao);
+            _unitOfWork.Transacoes.Add(transacao);
+            _unitOfWork.Save();
+
             _contaService.AtualizarSaldo(contaId, valor);
         }
     }

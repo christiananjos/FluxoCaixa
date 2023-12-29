@@ -4,19 +4,16 @@ namespace FluxoCaixa.Data.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly Context _dbContext;
+        private readonly FluxoContext _dbContext;
         public IContaRepository Contas { get; }
         public ITransacaoRepository Transacoes { get; }
 
-        public UnitOfWork(Context dbContext, IContaRepository contas, ITransacaoRepository transacoes)
+        public UnitOfWork(FluxoContext dbContext, IContaRepository contas, ITransacaoRepository transacoes)
         {
             _dbContext = dbContext;
             Contas = contas;
             Transacoes = transacoes;
         }
-
-      
-        
 
         public int Save()
         {
