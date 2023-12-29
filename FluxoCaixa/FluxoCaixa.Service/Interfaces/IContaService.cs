@@ -2,7 +2,7 @@
 {
     public interface IContaService
     {
-        Task<decimal> ObterSaldo(int contaId);
-        void AtualizarSaldo(int contaId, decimal valor);
+        Task<decimal> ObterSaldo(Guid contaId);
+        void AtualizarSaldo(Guid contaId, decimal valor);
     }
 }

@@ -12,7 +12,7 @@ namespace FluxoCaixa.Data.Repository
             _dbContext = context;
         }
 
-        public async Task<T> GetById(int id)
+        public async Task<T> GetById(Guid id)
         {
             return await _dbContext.Set<T>().FindAsync(id);
         }

@@ -19,7 +19,7 @@ namespace FluxoCaixa.Services.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task RealizarTransacao(int contaId, decimal valor)
+        public async Task RealizarTransacao(Guid contaId, decimal valor)
         {
             var transacao = new Transacao
             {

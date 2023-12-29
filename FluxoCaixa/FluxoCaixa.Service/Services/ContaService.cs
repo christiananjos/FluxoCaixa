@@ -18,13 +18,13 @@ namespace FluxoCaixa.Services.Services
 
 
 
-        public async Task<decimal> ObterSaldo(int contaId)
+        public async Task<decimal> ObterSaldo(Guid contaId)
         {
             var conta = await _unitOfWork.Contas.GetById(contaId);
             return conta?.Saldo ?? 0;
         }
 
-        public void AtualizarSaldo(int contaId, decimal valor)
+        public void AtualizarSaldo(Guid contaId, decimal valor)
         {
             var conta = _unitOfWork.Contas.GetById(contaId).Result;
             

@@ -17,7 +17,7 @@ namespace FluxoCaixa.Services.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<List<Transacao>> GerarRelatorio(int contaId, DateTime startDate, DateTime endDate)
+        public async Task<List<Transacao>> GerarRelatorio(Guid contaId, DateTime startDate, DateTime endDate)
         {
             var transacoes = await _dbContext.Transacoes
                 .Where(t => t.ContaId == contaId && t.Data >= startDate && t.Data <= endDate)
