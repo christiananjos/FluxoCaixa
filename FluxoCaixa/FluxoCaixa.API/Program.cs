@@ -1,3 +1,6 @@
+using FluxoCaixa.Application.Applications;
+using FluxoCaixa.Application.Interfaces;
+using FluxoCaixa.Data;
 using FluxoCaixa.Data.Interfaces;
 using FluxoCaixa.Data.Repository;
 using FluxoCaixa.Services.Interfaces;
@@ -12,10 +15,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<IContaService, ContaService>();
-builder.Services.AddScoped<IRabbitMQService, RabbitMQService>();
-builder.Services.AddScoped<IRelatorioService, RelatorioService>();
-builder.Services.AddScoped<ITransacaoService, TransacaoService>();
+builder.Services.AddDbContext<FluxoContext>();
+
+
 
 var app = builder.Build();
 

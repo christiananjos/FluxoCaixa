@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FluxoCaixa.Application\FluxoCaixa.Application.csproj" />
     <ProjectReference Include="..\FluxoCaixa.Service\FluxoCaixa.Services.csproj" />
   </ItemGroup>
 
