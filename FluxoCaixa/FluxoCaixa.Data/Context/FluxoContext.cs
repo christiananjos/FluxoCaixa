@@ -18,6 +18,10 @@ namespace FluxoCaixa.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer($"Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=FluxoDB;Integrated Security=True");
+
+            //Usar quando tiver a api pronta
+            //optionsBuilder.UseSqlServer(Configuration.ConnectionConfiguration
+            //                                       .GetConnectionString("DefaultConnection"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

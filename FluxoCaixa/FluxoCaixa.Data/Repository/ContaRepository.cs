@@ -1,15 +1,12 @@
-﻿using FluxoCaixa.Domain.Entities;
-using FluxoCaixa.Domain.Interfaces;
+﻿using FluxoCaixa.Data.Interfaces;
+using FluxoCaixa.Domain.Entities;
 
 namespace FluxoCaixa.Data.Repository
 {
-    public class ContaRepository : BaseRepository<Conta>, IContaRepository
+    public class ContaRepository : BaseRepository<Conta>
     {
-        public ContaRepository(FluxoContext dbContext) : base(dbContext)
+        public ContaRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-
         }
-
-
     }
 }

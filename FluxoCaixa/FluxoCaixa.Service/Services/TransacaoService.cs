@@ -1,6 +1,4 @@
 ﻿using FluxoCaixa.Data.Interfaces;
-using FluxoCaixa.Domain.Entities;
-using FluxoCaixa.Domain.Interfaces;
 using FluxoCaixa.Services.Interfaces;
 
 namespace FluxoCaixa.Services.Services
@@ -18,19 +16,24 @@ namespace FluxoCaixa.Services.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task RealizarTransacao(Guid contaId, decimal valor)
+        public Task RealizarTransacao(Guid contaId, decimal valor)
         {
-            var transacao = new Transacao
-            {
-                ContaId = contaId,
-                Valor = valor,
-                Data = DateTime.Now
-            };
-
-            _unitOfWork.Transacoes.Add(transacao);
-            _unitOfWork.Save();
-
-            _contaService.AtualizarSaldo(contaId, valor);
+            throw new NotImplementedException();
         }
+
+        //public async Task RealizarTransacao(Guid contaId, decimal valor)
+        //{
+        //    var transacao = new Transacao
+        //    {
+        //        ContaId = contaId,
+        //        Valor = valor,
+        //        Data = DateTime.Now
+        //    };
+
+        //    _unitOfWork.Transacoes.Add(transacao);
+        //    _unitOfWork.Save();
+
+        //    _contaService.AtualizarSaldo(contaId, valor);
+        //}
     }
 }

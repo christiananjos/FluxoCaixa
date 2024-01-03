@@ -3,11 +3,11 @@ using FluxoCaixa.Domain.Entities;
 
 namespace FluxoCaixa.Data.Repository
 {
-    public class TransacaoRepository : BaseRepository<Transacao>, ITransacaoRepository
+    public class TransacaoRepository : BaseRepository<Transacao>
     {
-        public TransacaoRepository(FluxoContext dbContext) : base(dbContext) { }
-
-
+        public TransacaoRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
+        {
+        }
     }
 
 }

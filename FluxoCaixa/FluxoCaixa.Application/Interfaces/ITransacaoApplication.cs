@@ -1,6 +1,8 @@
-﻿namespace FluxoCaixa.Application.Interfaces
+﻿using FluxoCaixa.Domain.Entities;
+
+namespace FluxoCaixa.Application.Interfaces
 {
-    public interface ITransacaoApplication
+    public interface ITransacaoApplication : IBaseApplication<Transacao>
     {
     }
 }

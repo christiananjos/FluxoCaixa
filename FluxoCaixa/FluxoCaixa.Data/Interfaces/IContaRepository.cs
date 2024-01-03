@@ -1,5 +1,6 @@
 ﻿using FluxoCaixa.Domain.Entities;
-namespace FluxoCaixa.Domain.Interfaces
+
+namespace FluxoCaixa.Data.Interfaces
 {
     public interface IContaRepository  : IBaseRepository<Conta>
     {

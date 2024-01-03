@@ -1,4 +1,4 @@
-﻿using FluxoCaixa.Domain.Interfaces;
+﻿using FluxoCaixa.Data.Interfaces;
 using FluxoCaixa.Services.Interfaces;
 
 namespace FluxoCaixa.Services.Services
@@ -16,27 +16,37 @@ namespace FluxoCaixa.Services.Services
             _unitOfWork = unitOfWork;
         }
 
-
-
-        public async Task<decimal> ObterSaldo(Guid contaId)
-        {
-            var conta = await _unitOfWork.Contas.GetById(contaId);
-            return conta?.Saldo ?? 0;
-        }
-
         public void AtualizarSaldo(Guid contaId, decimal valor)
         {
-            var conta = _unitOfWork.Contas.GetById(contaId).Result;
-            
-            if (conta != null)
-            {
-                conta.Saldo += valor;
-                _unitOfWork.Contas.Update(conta);
-                _unitOfWork.Save();
-
-                // Publicar mensagem no RabbitMQ para informar sobre a atualização de saldo
-                _rabbitMQService.PublicarMensagem($"Saldo atualizado para a conta {contaId}: {conta.Saldo}");
-            }
+            throw new NotImplementedException();
         }
+
+        public Task<decimal> ObterSaldo(Guid contaId)
+        {
+            throw new NotImplementedException();
+        }
+
+
+
+        //public async Task<decimal> ObterSaldo(Guid contaId)
+        //{
+        //    var conta = await _unitOfWork.Contas.GetById(contaId);
+        //    return conta?.Saldo ?? 0;
+        //}
+
+        //public void AtualizarSaldo(Guid contaId, decimal valor)
+        //{
+        //    var conta = _unitOfWork.Contas.GetById(contaId).Result;
+
+        //    if (conta != null)
+        //    {
+        //        conta.Saldo += valor;
+        //        _unitOfWork.Contas.Update(conta);
+        //        _unitOfWork.Save();
+
+        //        // Publicar mensagem no RabbitMQ para informar sobre a atualização de saldo
+        //        _rabbitMQService.PublicarMensagem($"Saldo atualizado para a conta {contaId}: {conta.Saldo}");
+        //    }
+        //}
     }
 }

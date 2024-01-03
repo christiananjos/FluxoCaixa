@@ -1,4 +1,4 @@
-﻿using FluxoCaixa.Domain.Interfaces;
+﻿using FluxoCaixa.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace FluxoCaixa.Data.Repository
@@ -6,32 +6,57 @@ namespace FluxoCaixa.Data.Repository
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
     {
         protected readonly FluxoContext _dbContext;
+        protected DbSet<T> dbSet;
+        private readonly IUnitOfWork _unitOfWork;
 
-        protected BaseRepository(FluxoContext context) => _dbContext = context;
-
-        public async Task<T> GetById(Guid id)
+        protected BaseRepository(IUnitOfWork unitOfWork)
         {
-            return await _dbContext.Set<T>().FindAsync(id);
+            _unitOfWork = unitOfWork;
+            dbSet = _unitOfWork.Context.Set<T>();
+
         }
+
+        public async Task<T> GetById(Guid id) => await dbSet.FindAsync(id);
 
         public async Task<IEnumerable<T>> GetAll()
         {
-            return await _dbContext.Set<T>().ToListAsync();
+            return await dbSet.ToListAsync();
         }
 
-        public void Add(T entity)
+        public async Task<T> Add(T entity)
         {
-            _dbContext.Set<T>().AddAsync(entity);
+            dbSet.Add(entity);
+            await _unitOfWork.SaveChangesAsync();
+            return entity;
         }
 
-        public void Delete(T entity)
+        public async Task Delete(Guid id)
         {
-            _dbContext.Set<T>().Remove(entity);
+            var data = await dbSet.FindAsync(id);
+            if (data != null)
+            {
+                dbSet.Remove(data);
+                await _unitOfWork.SaveChangesAsync();
+            }
+
+
         }
 
-        public void Update(T entity)
+        public async Task Update(T entity)
         {
-            _dbContext.Set<T>().Update(entity);
+            var data = await dbSet.FindAsync(entity);
+
+            _unitOfWork.Context.Entry(data).CurrentValues.SetValues(entity);
+
+            try
+            {
+                await _unitOfWork.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
+
         }
     }
 }

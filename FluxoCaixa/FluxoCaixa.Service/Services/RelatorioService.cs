@@ -1,8 +1,7 @@
 ﻿using FluxoCaixa.Data;
+using FluxoCaixa.Data.Interfaces;
 using FluxoCaixa.Domain.Entities;
-using FluxoCaixa.Domain.Interfaces;
 using FluxoCaixa.Services.Interfaces;
-using System.Data.Entity;
 
 namespace FluxoCaixa.Services.Services
 {
@@ -17,16 +16,21 @@ namespace FluxoCaixa.Services.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<List<Transacao>> GerarRelatorio(Guid contaId, DateTime startDate, DateTime endDate)
+        public Task<List<Transacao>> GerarRelatorio(Guid contaId, DateTime startDate, DateTime endDate)
         {
-            var transacoes = await _dbContext.Transacoes
-                .Where(t => t.ContaId == contaId && t.Data >= startDate && t.Data <= endDate)
-                .ToListAsync();
-
-            // Lógica para gerar um relatório com base nas transações
-            // ...
-
-            return transacoes;
+            throw new NotImplementedException();
         }
+
+        //public async Task<List<Transacao>> GerarRelatorio(Guid contaId, DateTime startDate, DateTime endDate)
+        //{
+        //    var transacoes = await _dbContext.Transacoes
+        //        .Where(t => t.ContaId == contaId && t.Data >= startDate && t.Data <= endDate)
+        //        .ToListAsync();
+
+        //    // Lógica para gerar um relatório com base nas transações
+        //    // ...
+
+        //    return transacoes;
+        //}
     }
 }

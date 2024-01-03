@@ -1,26 +1,18 @@
 ﻿using FluxoCaixa.Data.Interfaces;
-using FluxoCaixa.Domain.Interfaces;
 
 namespace FluxoCaixa.Data.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
         private readonly FluxoContext _dbContext;
-        public IContaRepository Contas { get; }
-        public ITransacaoRepository Transacoes { get; }
+        private bool _disposed = false;
 
-        public UnitOfWork(FluxoContext dbContext, IContaRepository contas, ITransacaoRepository transacoes)
-        {
-            _dbContext = dbContext;
-            Contas = contas;
-            Transacoes = transacoes;
-        }
+        //public IContaRepository Contas { get; }
+        //public ITransacaoRepository Transacoes { get; }
 
-        public int Save()
-        {
-            return _dbContext.SaveChanges();
-        }
+        public UnitOfWork(FluxoContext dbContext) => _dbContext = dbContext;
 
+        public FluxoContext Context => _dbContext;
         public void Dispose()
         {
             Dispose(true);
@@ -29,11 +21,17 @@ namespace FluxoCaixa.Data.Repository
 
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing)
+            if (!_disposed)
             {
-                _dbContext.Dispose();
+                if (disposing)
+                {
+                    _dbContext.Dispose();
+                }
+
+                _disposed = true;
             }
         }
 
+        public async Task SaveChangesAsync() => await _dbContext.SaveChangesAsync();
     }
 }
