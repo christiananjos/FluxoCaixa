@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoCaixa.Application", "F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoCaixa.Data", "FluxoCaixa.Data\FluxoCaixa.Data.csproj", "{3FEC9388-5F2E-4860-A48F-C2AB6B536B1F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxoCaixa.API", "FluxoCaixa.API\FluxoCaixa.API.csproj", "{A81795D0-24C5-4CA1-82C7-EF30B3F806D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{3FEC9388-5F2E-4860-A48F-C2AB6B536B1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FEC9388-5F2E-4860-A48F-C2AB6B536B1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FEC9388-5F2E-4860-A48F-C2AB6B536B1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A81795D0-24C5-4CA1-82C7-EF30B3F806D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A81795D0-24C5-4CA1-82C7-EF30B3F806D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A81795D0-24C5-4CA1-82C7-EF30B3F806D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A81795D0-24C5-4CA1-82C7-EF30B3F806D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

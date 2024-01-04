@@ -10,27 +10,27 @@ namespace FluxoCaixa.Application.Applications
         {
                 
         }
-        public Task<ActionResult<Transacao>> Add(Transacao entity)
+        public async Task<ActionResult<Transacao>> Add(Transacao entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ActionResult<IEnumerable<Transacao>>> GetAll()
+        public async Task<ActionResult<IEnumerable<Transacao>>> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Task<ActionResult<Transacao>> GetById(Guid id)
+        public async Task<ActionResult<Transacao>> GetById(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task Remove(Guid id)
+        public async Task Remove(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ActionResult<Transacao>> Update(Transacao entity)
+        public async Task<ActionResult<Transacao>> Update(Transacao entity)
         {
             throw new NotImplementedException();
         }
