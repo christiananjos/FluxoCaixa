@@ -1,4 +1,5 @@
 ﻿using FluxoCaixa.Application.Interfaces;
+using FluxoCaixa.Data.Interfaces;
 using FluxoCaixa.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,37 +9,39 @@ namespace FluxoCaixa.API.Controllers
     [Route("[controller]")]
     public class ContaController : Controller
     {
-        private readonly IContaApplication _contaApplication;
+        private readonly IUnitOfWork _unitOfWork;
+        IBaseRepository<Conta> contaRepository;
 
-        public ContaController(IContaApplication contaApplication)
+        public ContaController(IUnitOfWork unitOfWork, IBaseRepository<Conta> contaRepository)
         {
-            _contaApplication = contaApplication;
+            _unitOfWork = unitOfWork;
+            this.contaRepository = contaRepository;
         }
 
         [HttpGet]
         public async Task<IEnumerable<Conta>> GetAll()
         {
-            var contas = await _contaApplication.GetAll();
+            var contas = await contaRepository.GetAll();
             return contas;
         }
 
         [HttpPost]
         public async Task<Conta> Create(Conta conta)
         {
-            var contaCreated = await _contaApplication.Add(conta);
+            var contaCreated = await contaRepository.Add(conta);
             return contaCreated;
         }
 
         [HttpDelete("{id}")]
         public async Task Delete(Guid id)
         {
-            await _contaApplication.Remove(id);
+            await contaRepository.Delete(id);
         }
 
         [HttpPut]
         public async Task Update(Conta conta)
         {
-            await _contaApplication.Update(conta);
+            await contaRepository.Update(conta);
         }
     }
 }

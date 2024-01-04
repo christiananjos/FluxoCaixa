@@ -1,12 +1,10 @@
-using FluxoCaixa.Application.Applications;
-using FluxoCaixa.Application.Interfaces;
 using FluxoCaixa.Data;
 using FluxoCaixa.Data.Interfaces;
 using FluxoCaixa.Data.Repository;
-using FluxoCaixa.Services.Interfaces;
-using FluxoCaixa.Services.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 
@@ -15,9 +13,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddDbContext<FluxoContext>();
 
-
+builder.Services.AddDbContext<FluxoContext>((serviceProvider, options) =>
+{
+    var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+});
 
 var app = builder.Build();
 

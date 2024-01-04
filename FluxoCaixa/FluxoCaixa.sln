@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxoCaixa.API", "FluxoCaixa.API\FluxoCaixa.API.csproj", "{6807FA53-2450-4235-8F78-275B38111DB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoCaixa.Domain", "FluxoCaixa.Domain\FluxoCaixa.Domain.csproj", "{E9FDAD11-A009-4E91-9D5F-9A7FB746E682}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxoCaixa.Domain", "FluxoCaixa.Domain\FluxoCaixa.Domain.csproj", "{E9FDAD11-A009-4E91-9D5F-9A7FB746E682}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoCaixa.Services", "FluxoCaixa.Service\FluxoCaixa.Services.csproj", "{105CB858-D26D-4C5D-8428-B8C1FE870351}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxoCaixa.Services", "FluxoCaixa.Service\FluxoCaixa.Services.csproj", "{105CB858-D26D-4C5D-8428-B8C1FE870351}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoCaixa.Application", "FluxoCaixa.Application\FluxoCaixa.Application.csproj", "{0D677BF7-45D9-444A-8AC5-49838B05F7C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxoCaixa.Application", "FluxoCaixa.Application\FluxoCaixa.Application.csproj", "{0D677BF7-45D9-444A-8AC5-49838B05F7C1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxoCaixa.Data", "FluxoCaixa.Data\FluxoCaixa.Data.csproj", "{3FEC9388-5F2E-4860-A48F-C2AB6B536B1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluxoCaixa.Data", "FluxoCaixa.Data\FluxoCaixa.Data.csproj", "{3FEC9388-5F2E-4860-A48F-C2AB6B536B1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6807FA53-2450-4235-8F78-275B38111DB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6807FA53-2450-4235-8F78-275B38111DB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6807FA53-2450-4235-8F78-275B38111DB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6807FA53-2450-4235-8F78-275B38111DB9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E9FDAD11-A009-4E91-9D5F-9A7FB746E682}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E9FDAD11-A009-4E91-9D5F-9A7FB746E682}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9FDAD11-A009-4E91-9D5F-9A7FB746E682}.Release|Any CPU.ActiveCfg = Release|Any CPU
