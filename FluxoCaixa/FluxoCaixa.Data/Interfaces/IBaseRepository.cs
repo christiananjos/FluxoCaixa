@@ -6,6 +6,6 @@
         Task<IEnumerable<T>> GetAll();
         Task<T> Add(T entity);
         Task Delete(Guid entity);
-        Task Update(T entity);
+        Task<T> Update(T entity);
     }
 }

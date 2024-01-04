@@ -42,7 +42,7 @@ namespace FluxoCaixa.Data.Repository
 
         }
 
-        public async Task Update(T entity)
+        public async Task<T> Update(T entity)
         {
             var data = await dbSet.FindAsync(entity);
 
@@ -51,6 +51,8 @@ namespace FluxoCaixa.Data.Repository
             try
             {
                 await _unitOfWork.SaveChangesAsync();
+
+                return entity;
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -59,6 +61,6 @@ namespace FluxoCaixa.Data.Repository
 
         }
 
-        
+
     }
 }
