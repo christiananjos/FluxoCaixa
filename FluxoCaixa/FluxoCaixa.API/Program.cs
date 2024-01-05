@@ -17,6 +17,7 @@ builder.Services.AddScoped<ITransacaoApplication, TransacaoApplication>();
 builder.Services.AddScoped<IContaRepository, ContaRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddDbContext<FluxoContext>();
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 

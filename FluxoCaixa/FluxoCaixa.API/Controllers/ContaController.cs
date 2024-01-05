@@ -1,6 +1,9 @@
-﻿using FluxoCaixa.Application.Interfaces;
+﻿using AutoMapper;
+using FluxoCaixa.Application.Interfaces;
 using FluxoCaixa.Domain.Entities;
+using FluxoCaixa.Domain.Input;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace FluxoCaixa.API.Controllers
 {
@@ -9,9 +12,11 @@ namespace FluxoCaixa.API.Controllers
     public class ContaController : ControllerBase
     {
         private readonly IContaApplication _contaApplication;
-        public ContaController(IContaApplication contaApplication)
+        private readonly IMapper _mapper;
+        public ContaController(IContaApplication contaApplication, IMapper mapper)
         {
             _contaApplication = contaApplication;
+            _mapper = mapper;
         }
 
         [HttpGet()]
@@ -27,9 +32,10 @@ namespace FluxoCaixa.API.Controllers
         }
 
         [HttpPost()]
-        public async Task<ActionResult<Conta>> Create(Conta conta)
+        public async Task<ActionResult<Conta>> Create(ContaCreate conta)
         {
-            return await _contaApplication.Add(conta);
+            var map = _mapper.Map<Conta>(conta);
+            return await _contaApplication.Add(map);
         }
 
         [HttpPut()]

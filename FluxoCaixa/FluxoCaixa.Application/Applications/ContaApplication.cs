@@ -14,6 +14,7 @@ namespace FluxoCaixa.Application.Applications
         }
         public async Task<ActionResult<Conta>> Add(Conta entity)
         {
+            entity.CreateAt = DateTime.Now;
             return await _contaRepository.Add(entity);
         }
 
@@ -31,11 +32,15 @@ namespace FluxoCaixa.Application.Applications
 
         public async Task Remove(Guid id)
         {
-            await _contaRepository.Delete(id);
+            var conta  = await _contaRepository.GetById(id);
+            conta.RemoveAt = DateTime.Now;
+
+            await _contaRepository.Delete(conta);
         }
 
         public async Task<ActionResult<Conta>> Update(Conta entity)
         {
+            entity.UpdateAt = DateTime.Now;
             return await _contaRepository.Update(entity);
         }
     }

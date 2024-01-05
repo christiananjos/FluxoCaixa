@@ -30,9 +30,9 @@ namespace FluxoCaixa.Data.Repository
             return entity;
         }
 
-        public async Task Delete(Guid id)
+        public async Task Delete(T entity)
         {
-            var data = await dbSet.FindAsync(id);
+            var data = await dbSet.FindAsync(entity);
             if (data != null)
             {
                 dbSet.Remove(data);
