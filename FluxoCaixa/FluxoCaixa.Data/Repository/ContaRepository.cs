@@ -8,5 +8,10 @@ namespace FluxoCaixa.Data.Repository
         public ContaRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
         }
+
+        public async Task RemoveLogical(Conta conta)
+        {
+            await Update(conta);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using FluxoCaixa.Data.Interfaces;
+﻿using FluxoCaixa.Data.Context;
+using FluxoCaixa.Data.Interfaces;
 using FluxoCaixa.Data.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

@@ -8,6 +8,12 @@ namespace FluxoCaixa.Data.Repository
         public TransacaoRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
         }
+
+        public async Task RemoveLogical(Transacao transacao)
+        {
+            transacao.SetRemoveAtDate();
+            await Update(transacao);
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 using FluxoCaixa.Application.Applications;
 using FluxoCaixa.Application.Interfaces;
 using FluxoCaixa.Data;
+using FluxoCaixa.Data.Context;
 using FluxoCaixa.Data.Interfaces;
 using FluxoCaixa.Data.Repository;
 

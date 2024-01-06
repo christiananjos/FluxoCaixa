@@ -9,11 +9,6 @@ namespace FluxoCaixa.Data.Context.Configurations
         public void Configure(EntityTypeBuilder<Conta> builder)
         {
             builder.HasKey(o => o.Id);
-
-            builder.Property(t => t.CreateAt)
-                    .IsRequired()
-                    .HasColumnType("Date")
-                    .HasDefaultValueSql("GetDate()");
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace FluxoCaixa.Data.Interfaces
+﻿using FluxoCaixa.Data.Context;
+
+namespace FluxoCaixa.Data.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {

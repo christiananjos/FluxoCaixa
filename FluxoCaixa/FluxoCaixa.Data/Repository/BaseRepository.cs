@@ -1,4 +1,5 @@
-﻿using FluxoCaixa.Data.Interfaces;
+﻿using FluxoCaixa.Data.Context;
+using FluxoCaixa.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace FluxoCaixa.Data.Repository
@@ -44,9 +45,7 @@ namespace FluxoCaixa.Data.Repository
 
         public async Task<T> Update(T entity)
         {
-            var data = await dbSet.FindAsync(entity);
-
-            _unitOfWork.Context.Entry(data).CurrentValues.SetValues(entity);
+            _unitOfWork.Context.Update(entity);
 
             try
             {

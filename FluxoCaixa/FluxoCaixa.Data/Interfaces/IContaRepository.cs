@@ -4,6 +4,6 @@ namespace FluxoCaixa.Data.Interfaces
 {
     public interface IContaRepository  : IBaseRepository<Conta>
     {
-       
+        Task RemoveLogical(Conta conta);
     }
 }

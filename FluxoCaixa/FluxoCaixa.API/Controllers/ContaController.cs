@@ -4,6 +4,7 @@ using FluxoCaixa.Domain.Entities;
 using FluxoCaixa.Domain.Input;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Drawing;
 
 namespace FluxoCaixa.API.Controllers
 {
@@ -34,8 +35,8 @@ namespace FluxoCaixa.API.Controllers
         [HttpPost()]
         public async Task<ActionResult<Conta>> Create(ContaCreate conta)
         {
-            var map = _mapper.Map<Conta>(conta);
-            return await _contaApplication.Add(map);
+            var mapConta = _mapper.Map<Conta>(conta);
+            return await _contaApplication.Add(mapConta);
         }
 
         [HttpPut()]

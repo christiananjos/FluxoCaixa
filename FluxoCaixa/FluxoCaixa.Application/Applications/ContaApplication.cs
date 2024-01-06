@@ -14,7 +14,7 @@ namespace FluxoCaixa.Application.Applications
         }
         public async Task<ActionResult<Conta>> Add(Conta entity)
         {
-            entity.CreateAt = DateTime.Now;
+            entity.SetCreateAtDate();
             return await _contaRepository.Add(entity);
         }
 
@@ -30,18 +30,19 @@ namespace FluxoCaixa.Application.Applications
             return await _contaRepository.GetById(id);
         }
 
-        public async Task Remove(Guid id)
-        {
-            var conta  = await _contaRepository.GetById(id);
-            conta.RemoveAt = DateTime.Now;
-
-            await _contaRepository.Delete(conta);
-        }
-
         public async Task<ActionResult<Conta>> Update(Conta entity)
         {
-            entity.UpdateAt = DateTime.Now;
+            entity.SetUpdateAtDate();
             return await _contaRepository.Update(entity);
+        }
+
+        public async Task Remove(Guid id)
+        {
+            var conta = await _contaRepository.GetById(id);
+
+            conta.SetRemoveAtDate();
+
+            await _contaRepository.Update(conta);
         }
     }
 }

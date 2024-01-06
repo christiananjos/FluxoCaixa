@@ -4,6 +4,7 @@ using FluxoCaixa.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FluxoCaixa.Data.Migrations
 {
     [DbContext(typeof(FluxoContext))]
-    partial class FluxoContextModelSnapshot : ModelSnapshot
+    [Migration("20240106020925_Test")]
+    partial class Test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,9 +32,11 @@ namespace FluxoCaixa.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreateAt")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("Date")
+                        .HasDefaultValueSql("GetDate()");
 
-                    b.Property<DateTime?>("RemoveAt")
+                    b.Property<DateTime>("RemoveAt")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Saldo")
@@ -55,12 +60,14 @@ namespace FluxoCaixa.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreateAt")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("Date")
+                        .HasDefaultValueSql("GetDate()");
 
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("RemoveAt")
+                    b.Property<DateTime>("RemoveAt")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("UpdateAt")

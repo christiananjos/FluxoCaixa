@@ -1,4 +1,5 @@
 ﻿using FluxoCaixa.Data;
+using FluxoCaixa.Data.Context;
 using FluxoCaixa.Data.Interfaces;
 using FluxoCaixa.Domain.Entities;
 using FluxoCaixa.Services.Interfaces;

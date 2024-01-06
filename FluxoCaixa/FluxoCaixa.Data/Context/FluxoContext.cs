@@ -2,7 +2,7 @@
 using FluxoCaixa.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace FluxoCaixa.Data
+namespace FluxoCaixa.Data.Context
 {
     public class FluxoContext : DbContext
     {

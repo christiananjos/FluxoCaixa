@@ -12,11 +12,6 @@ namespace FluxoCaixa.Data.Context.Configurations
             builder.HasOne(x => x.Conta)
                 .WithMany()
                 .HasForeignKey(x => x.ContaId);
-            
-            builder.Property(t => t.CreateAt)
-                    .IsRequired()
-                    .HasColumnType("Date")
-                    .HasDefaultValueSql("GetDate()");
         }
     }
 }

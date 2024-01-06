@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FluxoCaixa.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class v1 : Migration
+    public partial class Test : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +18,7 @@ namespace FluxoCaixa.Data.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Saldo = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CreateAt = table.Column<DateTime>(type: "Date", nullable: false, defaultValueSql: "GetDate()"),
-                    UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     RemoveAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -35,7 +35,7 @@ namespace FluxoCaixa.Data.Migrations
                     Valor = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Data = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreateAt = table.Column<DateTime>(type: "Date", nullable: false, defaultValueSql: "GetDate()"),
-                    UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     RemoveAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
