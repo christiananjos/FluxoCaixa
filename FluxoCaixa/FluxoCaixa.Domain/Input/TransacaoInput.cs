@@ -1,13 +1,9 @@
-﻿namespace FluxoCaixa.Domain.Entities
+﻿namespace FluxoCaixa.Domain.Input
 {
-    public class Transacao : ModelBase
+    public class TransacaoInput
     {
-        public Conta Conta { get; set; }
         public Guid ContaId { get; set; }
-
-        public TipoTransacao TipoTransacao { get; set; }
         public int TipoTransacaoId { get; set; }
-        
         public string Descricao { get; set; }
         public decimal Valor { get; set; }
     }

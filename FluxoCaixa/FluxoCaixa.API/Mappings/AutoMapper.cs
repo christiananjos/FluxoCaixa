@@ -9,6 +9,8 @@ namespace FluxoCaixa.API.Mappings
         public AutoMapper()
         {
             CreateMap<Conta, ContaCreate>().ReverseMap();
+            CreateMap<Transacao, TransacaoInput>().ReverseMap();
+            CreateMap<TipoTransacao, TipoTransacaoInput>().ReverseMap();
         }
     }
 }

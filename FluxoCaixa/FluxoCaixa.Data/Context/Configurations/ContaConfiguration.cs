@@ -9,6 +9,10 @@ namespace FluxoCaixa.Data.Context.Configurations
         public void Configure(EntityTypeBuilder<Conta> builder)
         {
             builder.HasKey(o => o.Id);
+
+            builder.Property(o => o.Nome)
+                .HasMaxLength(100)
+                .IsRequired();
         }
     }
 }

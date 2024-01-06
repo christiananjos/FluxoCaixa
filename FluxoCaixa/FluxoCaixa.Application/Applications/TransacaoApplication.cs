@@ -12,6 +12,10 @@ namespace FluxoCaixa.Application.Applications
         public TransacaoApplication(ITransacaoRepository transacaoRepository) => _transacaoRepository = transacaoRepository;
         public async Task<ActionResult<Transacao>> Add(Transacao entity)
         {
+            //Regras:
+            //Ao criar uma Transação irá atualizaar o saldo da conta.
+
+            //Ao finalizar enviar mensagem RabbitMq
             entity.SetCreateAtDate();
             return await _transacaoRepository.Add(entity);
         }

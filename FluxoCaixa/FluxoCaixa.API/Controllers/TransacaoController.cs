@@ -1,5 +1,7 @@
-﻿using FluxoCaixa.Application.Interfaces;
+﻿using AutoMapper;
+using FluxoCaixa.Application.Interfaces;
 using FluxoCaixa.Domain.Entities;
+using FluxoCaixa.Domain.Input;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FluxoCaixa.API.Controllers
@@ -9,10 +11,12 @@ namespace FluxoCaixa.API.Controllers
     public class TransacaoController : ControllerBase
     {
         private readonly ITransacaoApplication _transacaoApplication;
+        private readonly IMapper _mapper;
 
-        public TransacaoController(ITransacaoApplication transacaoApplication)
+        public TransacaoController(ITransacaoApplication transacaoApplication, IMapper mapper)
         {
             _transacaoApplication = transacaoApplication;
+            _mapper = mapper;
         }
 
         [HttpGet()]
@@ -28,21 +32,10 @@ namespace FluxoCaixa.API.Controllers
         }
 
         [HttpPost()]
-        public async Task<ActionResult<Transacao>> Create(Transacao transacao)
+        public async Task<ActionResult<Transacao>> Create(TransacaoInput transacao)
         {
-            return await _transacaoApplication.Add(transacao);
-        }
-
-        [HttpPut()]
-        public async Task<ActionResult<Transacao>> Update(Transacao transacao)
-        {
-            return await _transacaoApplication.Update(transacao);
-        }
-
-        [HttpDelete()]
-        public async Task Delete(Guid id)
-        {
-            await _transacaoApplication.Remove(id);
+            var map = _mapper.Map<Transacao>(transacao);
+            return await _transacaoApplication.Add(map);
         }
     }
 }

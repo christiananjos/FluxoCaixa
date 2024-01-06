@@ -9,9 +9,11 @@ namespace FluxoCaixa.Data.Context.Configurations
         public void Configure(EntityTypeBuilder<Transacao> builder)
         {
             builder.HasKey(o => o.Id);
+
             builder.HasOne(x => x.Conta)
                 .WithMany()
-                .HasForeignKey(x => x.ContaId);
+                .HasForeignKey(x => x.ContaId)
+                .IsRequired();
 
             builder.HasKey(o => o.Id);
             builder.HasOne(x => x.TipoTransacao)
@@ -19,7 +21,8 @@ namespace FluxoCaixa.Data.Context.Configurations
                 .HasForeignKey(x => x.TipoTransacaoId);
 
             builder.Property(o => o.Descricao)
-                .HasMaxLength(250);
+                .HasMaxLength(100)
+                .IsRequired();
         }
     }
 }
