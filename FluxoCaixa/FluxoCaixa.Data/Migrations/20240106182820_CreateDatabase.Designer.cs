@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FluxoCaixa.Data.Migrations
 {
     [DbContext(typeof(FluxoContext))]
-    [Migration("20240106172346_CreateDatabase")]
+    [Migration("20240106182820_CreateDatabase")]
     partial class CreateDatabase
     {
         /// <inheritdoc />
@@ -53,6 +53,34 @@ namespace FluxoCaixa.Data.Migrations
                     b.ToTable("Contas");
                 });
 
+            modelBuilder.Entity("FluxoCaixa.Domain.Entities.TipoTransacao", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreateAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("IdInterno")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("RemoveAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("UpdateAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TipoTransacao");
+                });
+
             modelBuilder.Entity("FluxoCaixa.Domain.Entities.Transacao", b =>
                 {
                     b.Property<Guid>("Id")
@@ -73,8 +101,8 @@ namespace FluxoCaixa.Data.Migrations
                     b.Property<DateTime?>("RemoveAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("TipoTransacaoId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("TipoTransacaoId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("datetime2");
@@ -91,24 +119,6 @@ namespace FluxoCaixa.Data.Migrations
                     b.ToTable("Transacoes");
                 });
 
-            modelBuilder.Entity("FluxoCaixa.Domain.Enums.TipoTransacao", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TipoTransacao");
-                });
-
             modelBuilder.Entity("FluxoCaixa.Domain.Entities.Transacao", b =>
                 {
                     b.HasOne("FluxoCaixa.Domain.Entities.Conta", "Conta")
@@ -117,7 +127,7 @@ namespace FluxoCaixa.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FluxoCaixa.Domain.Enums.TipoTransacao", "TipoTransacao")
+                    b.HasOne("FluxoCaixa.Domain.Entities.TipoTransacao", "TipoTransacao")
                         .WithMany()
                         .HasForeignKey("TipoTransacaoId")
                         .OnDelete(DeleteBehavior.Cascade)

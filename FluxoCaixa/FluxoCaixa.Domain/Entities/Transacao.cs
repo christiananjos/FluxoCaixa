@@ -6,7 +6,7 @@
         public Guid ContaId { get; set; }
 
         public TipoTransacao TipoTransacao { get; set; }
-        public int TipoTransacaoId { get; set; }
+        public Guid TipoTransacaoId { get; set; }
         
         public string Descricao { get; set; }
         public decimal Valor { get; set; }

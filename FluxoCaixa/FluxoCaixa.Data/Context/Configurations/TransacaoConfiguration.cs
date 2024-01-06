@@ -15,10 +15,10 @@ namespace FluxoCaixa.Data.Context.Configurations
                 .HasForeignKey(x => x.ContaId)
                 .IsRequired();
 
-            builder.HasKey(o => o.Id);
             builder.HasOne(x => x.TipoTransacao)
-                .WithMany()
-                .HasForeignKey(x => x.TipoTransacaoId);
+                 .WithMany()
+                 .HasForeignKey(x => x.TipoTransacaoId)
+                 .IsRequired();
 
             builder.Property(o => o.Descricao)
                 .HasMaxLength(100)
