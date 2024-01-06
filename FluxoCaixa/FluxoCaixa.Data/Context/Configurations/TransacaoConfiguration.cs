@@ -12,6 +12,11 @@ namespace FluxoCaixa.Data.Context.Configurations
             builder.HasOne(x => x.Conta)
                 .WithMany()
                 .HasForeignKey(x => x.ContaId);
+
+            builder.HasKey(o => o.Id);
+            builder.HasOne(x => x.TipoTransacao)
+                .WithMany()
+                .HasForeignKey(x => x.TipoTransacaoId);
         }
     }
 }

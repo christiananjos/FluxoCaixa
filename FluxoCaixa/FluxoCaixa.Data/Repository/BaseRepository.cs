@@ -45,7 +45,9 @@ namespace FluxoCaixa.Data.Repository
 
         public async Task<T> Update(T entity)
         {
-            _unitOfWork.Context.Update(entity);
+            dbSet.Update(entity);
+
+            // _unitOfWork.Context.Update(entity);
 
             try
             {

@@ -28,6 +28,7 @@ namespace FluxoCaixa.Data.Context
         {
             modelBuilder.ApplyConfiguration(new ContaConfiguration());
             modelBuilder.ApplyConfiguration(new TransacaoConfiguration());
+            modelBuilder.ApplyConfiguration(new TipoTransacaoConfiguration());
         }
     }
 }

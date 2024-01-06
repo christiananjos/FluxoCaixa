@@ -4,6 +4,7 @@ using FluxoCaixa.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FluxoCaixa.Data.Migrations
 {
     [DbContext(typeof(FluxoContext))]
-    partial class FluxoContextModelSnapshot : ModelSnapshot
+    [Migration("20240106041002_RemoveCampoTransacao")]
+    partial class RemoveCampoTransacao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,9 +63,6 @@ namespace FluxoCaixa.Data.Migrations
                     b.Property<DateTime?>("RemoveAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("TipoTransacaoId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("datetime2");
 
@@ -73,26 +73,7 @@ namespace FluxoCaixa.Data.Migrations
 
                     b.HasIndex("ContaId");
 
-                    b.HasIndex("TipoTransacaoId");
-
                     b.ToTable("Transacoes");
-                });
-
-            modelBuilder.Entity("FluxoCaixa.Domain.Enums.TipoTransacao", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("NomeTransacao")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TipoTransacao");
                 });
 
             modelBuilder.Entity("FluxoCaixa.Domain.Entities.Transacao", b =>
@@ -103,15 +84,7 @@ namespace FluxoCaixa.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FluxoCaixa.Domain.Enums.TipoTransacao", "TipoTransacao")
-                        .WithMany()
-                        .HasForeignKey("TipoTransacaoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Conta");
-
-                    b.Navigation("TipoTransacao");
                 });
 #pragma warning restore 612, 618
         }

@@ -32,8 +32,18 @@ namespace FluxoCaixa.Application.Applications
 
         public async Task<ActionResult<Conta>> Update(Conta entity)
         {
-            entity.SetUpdateAtDate();
-            return await _contaRepository.Update(entity);
+            Conta contaUpdated = new();
+
+            var conta = await _contaRepository.GetById(entity.Id);
+
+            if (conta != null)
+            {
+                conta.Saldo = entity.Saldo;
+                conta.SetUpdateAtDate();
+                contaUpdated = await _contaRepository.Update(conta);
+            }
+
+            return contaUpdated;
         }
 
         public async Task Remove(Guid id)

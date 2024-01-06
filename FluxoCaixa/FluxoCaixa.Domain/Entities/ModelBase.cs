@@ -14,13 +14,13 @@ namespace FluxoCaixa.Domain.Entities
         public Guid Id { get; set; }
 
         [JsonIgnore]
-        public DateTime CreateAt { get; set; }
+        public DateTime? CreateAt { get; private set; }
 
         [JsonIgnore]
-        public DateTime? UpdateAt { get; set; }
+        public DateTime? UpdateAt { get; private set; }
 
         [JsonIgnore]
-        public DateTime? RemoveAt { get; set; }
+        public DateTime? RemoveAt { get; private set; }
 
         public void SetCreateAtDate() { CreateAt = DateTime.Now; }
         public void SetUpdateAtDate() { UpdateAt = DateTime.Now; }

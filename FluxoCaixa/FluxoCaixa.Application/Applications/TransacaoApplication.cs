@@ -1,4 +1,6 @@
 ﻿using FluxoCaixa.Application.Interfaces;
+using FluxoCaixa.Data.Interfaces;
+using FluxoCaixa.Data.Repository;
 using FluxoCaixa.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,33 +8,52 @@ namespace FluxoCaixa.Application.Applications
 {
     public class TransacaoApplication : ITransacaoApplication
     {
-        public TransacaoApplication()
-        {
-                
-        }
+        private readonly ITransacaoRepository _transacaoRepository;
+        public TransacaoApplication(ITransacaoRepository transacaoRepository) => _transacaoRepository = transacaoRepository;
         public async Task<ActionResult<Transacao>> Add(Transacao entity)
         {
-            throw new NotImplementedException();
+            entity.SetCreateAtDate();
+            return await _transacaoRepository.Add(entity);
         }
 
         public async Task<ActionResult<IEnumerable<Transacao>>> GetAll()
         {
-            throw new NotImplementedException();
+            var transacoes = await _transacaoRepository.GetAll();
+
+            return transacoes.ToList();
         }
 
         public async Task<ActionResult<Transacao>> GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return await _transacaoRepository.GetById(id);
         }
 
         public async Task Remove(Guid id)
         {
-            throw new NotImplementedException();
+            var transacao = await _transacaoRepository.GetById(id);
+
+            transacao.SetRemoveAtDate();
+
+            await _transacaoRepository.Update(transacao);
         }
 
         public async Task<ActionResult<Transacao>> Update(Transacao entity)
         {
-            throw new NotImplementedException();
+            Transacao transacaoUpdated = new();
+
+            var transacao = await _transacaoRepository.GetById(entity.Id);
+            
+            if (transacao != null)
+            {
+                transacao.Valor = entity.Valor;
+                transacao.SetRemoveAtDate();
+
+                transacaoUpdated =  await _transacaoRepository.Update(transacao);
+            }
+
+            return transacaoUpdated;
+
+           
         }
     }
 }
