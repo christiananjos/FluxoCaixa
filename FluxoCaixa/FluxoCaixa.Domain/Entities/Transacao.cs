@@ -9,6 +9,7 @@ namespace FluxoCaixa.Domain.Entities
 
         public TipoTransacao TipoTransacao { get; set; }
         public int TipoTransacaoId { get; set; }
+        public string Descricao { get; set; }
         public decimal Valor { get; set; }
     }
 }

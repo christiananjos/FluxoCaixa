@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FluxoCaixa.Data.Migrations
 {
     [DbContext(typeof(FluxoContext))]
-    [Migration("20240106042030_AddTable_TipoTransacao")]
-    partial class AddTable_TipoTransacao
+    [Migration("20240106051528_CreateDatabase")]
+    partial class CreateDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,6 +59,11 @@ namespace FluxoCaixa.Data.Migrations
 
                     b.Property<DateTime?>("CreateAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<DateTime?>("RemoveAt")
                         .HasColumnType("datetime2");

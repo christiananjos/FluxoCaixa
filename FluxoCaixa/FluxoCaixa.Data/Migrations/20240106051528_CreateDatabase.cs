@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FluxoCaixa.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Test : Migration
+    public partial class CreateDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,13 +17,26 @@ namespace FluxoCaixa.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Saldo = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CreateAt = table.Column<DateTime>(type: "Date", nullable: false, defaultValueSql: "GetDate()"),
+                    CreateAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    RemoveAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    RemoveAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Contas", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TipoTransacao",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NomeTransacao = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TipoTransacao", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -32,11 +45,12 @@ namespace FluxoCaixa.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ContaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TipoTransacaoId = table.Column<int>(type: "int", nullable: false),
+                    Descricao = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Valor = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Data = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreateAt = table.Column<DateTime>(type: "Date", nullable: false, defaultValueSql: "GetDate()"),
+                    CreateAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    RemoveAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    RemoveAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -47,12 +61,23 @@ namespace FluxoCaixa.Data.Migrations
                         principalTable: "Contas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Transacoes_TipoTransacao_TipoTransacaoId",
+                        column: x => x.TipoTransacaoId,
+                        principalTable: "TipoTransacao",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Transacoes_ContaId",
                 table: "Transacoes",
                 column: "ContaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transacoes_TipoTransacaoId",
+                table: "Transacoes",
+                column: "TipoTransacaoId");
         }
 
         /// <inheritdoc />
@@ -63,6 +88,9 @@ namespace FluxoCaixa.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Contas");
+
+            migrationBuilder.DropTable(
+                name: "TipoTransacao");
         }
     }
 }

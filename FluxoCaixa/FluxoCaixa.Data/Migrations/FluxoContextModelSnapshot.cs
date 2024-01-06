@@ -57,6 +57,11 @@ namespace FluxoCaixa.Data.Migrations
                     b.Property<DateTime?>("CreateAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
                     b.Property<DateTime?>("RemoveAt")
                         .HasColumnType("datetime2");
 

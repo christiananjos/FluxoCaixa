@@ -17,6 +17,9 @@ namespace FluxoCaixa.Data.Context.Configurations
             builder.HasOne(x => x.TipoTransacao)
                 .WithMany()
                 .HasForeignKey(x => x.TipoTransacaoId);
+
+            builder.Property(o => o.Descricao)
+                .HasMaxLength(250);
         }
     }
 }
