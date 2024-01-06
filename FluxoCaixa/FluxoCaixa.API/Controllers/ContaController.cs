@@ -20,6 +20,15 @@ namespace FluxoCaixa.API.Controllers
             _mapper = mapper;
         }
 
+
+        [HttpPost()]
+        public async Task<ActionResult<Conta>> Create(ContaCreate conta)
+        {
+            var mapConta = _mapper.Map<Conta>(conta);
+            return await _contaApplication.Add(mapConta);
+        }
+
+
         [HttpGet()]
         public async Task<ActionResult<IEnumerable<Conta>>> Get()
         {
@@ -30,13 +39,6 @@ namespace FluxoCaixa.API.Controllers
         public async Task<ActionResult<Conta>> GetById(Guid id)
         {
             return await _contaApplication.GetById(id);
-        }
-
-        [HttpPost()]
-        public async Task<ActionResult<Conta>> Create(ContaCreate conta)
-        {
-            var mapConta = _mapper.Map<Conta>(conta);
-            return await _contaApplication.Add(mapConta);
         }
 
         [HttpPut()]

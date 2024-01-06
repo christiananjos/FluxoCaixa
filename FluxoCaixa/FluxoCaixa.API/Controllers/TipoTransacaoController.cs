@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using FluxoCaixa.Application.Applications;
 using FluxoCaixa.Application.Interfaces;
 using FluxoCaixa.Domain.Entities;
 using FluxoCaixa.Domain.Input;
@@ -20,6 +19,15 @@ namespace FluxoCaixa.API.Controllers
             _tipoTransacaoApplication = tipoTransacaoApplication;
         }
 
+
+        [HttpPost()]
+        public async Task<ActionResult<TipoTransacao>> Create(TipoTransacaoInput tipoTransacao)
+        {
+            var map = _mapper.Map<TipoTransacao>(tipoTransacao);
+
+            return await _tipoTransacaoApplication.Add(map);
+        }
+
         [HttpGet()]
         public async Task<ActionResult<IEnumerable<TipoTransacao>>> Get()
         {
@@ -32,12 +40,5 @@ namespace FluxoCaixa.API.Controllers
             return await _tipoTransacaoApplication.GetById(id);
         }
 
-        [HttpPost()]
-        public async Task<ActionResult<TipoTransacao>> Create(TipoTransacaoInput tipoTransacao)
-        {
-            var map = _mapper.Map<TipoTransacao>(tipoTransacao);
-
-            return await _tipoTransacaoApplication.Add(map);
-        }
     }
 }
