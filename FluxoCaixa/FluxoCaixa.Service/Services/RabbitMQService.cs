@@ -9,9 +9,10 @@ namespace FluxoCaixa.Services.Services
         private readonly IConnection _connection;
         private readonly IModel _channel;
 
-        public RabbitMQService()
+        public RabbitMQService(IConnection connection, IModel channel)
         {
-           
+            _connection = connection;
+            _channel = channel;
         }
 
         public void PublicarMensagem(string mensagem)
@@ -28,8 +29,6 @@ namespace FluxoCaixa.Services.Services
                                      autoDelete: false,
                                      arguments: null);
 
-                const string message = "Hello World!";
-
                 var body = Encoding.UTF8.GetBytes(mensagem);
 
                 channel.BasicPublish(exchange: string.Empty,
@@ -42,7 +41,7 @@ namespace FluxoCaixa.Services.Services
 
                 throw new Exception(ex.Message);
             }
-            
+
         }
     }
 }

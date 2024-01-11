@@ -19,6 +19,13 @@ namespace FluxoCaixa.API.Controllers
             _mapper = mapper;
         }
 
+        [HttpPost()]
+        public async Task<ActionResult<Transacao>> Create(TransacaoInput transacao)
+        {
+            var map = _mapper.Map<Transacao>(transacao);
+            return await _transacaoApplication.Add(map);
+        }
+
         [HttpGet()]
         public async Task<ActionResult<IEnumerable<Transacao>>> Get()
         {
@@ -31,11 +38,13 @@ namespace FluxoCaixa.API.Controllers
             return await _transacaoApplication.GetById(id);
         }
 
-        [HttpPost()]
-        public async Task<ActionResult<Transacao>> Create(TransacaoInput transacao)
+
+        [HttpGet()]
+        public async Task<ActionResult<IEnumerable<Transacao>>> GetFilter()
         {
-            var map = _mapper.Map<Transacao>(transacao);
-            return await _transacaoApplication.Add(map);
+            return await _transacaoApplication.GetAll();
         }
+
+
     }
 }
