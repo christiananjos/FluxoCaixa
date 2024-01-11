@@ -26,38 +26,63 @@ namespace FluxoCaixa.Data.Repository
 
         public async Task<T> Add(T entity)
         {
-            dbSet.Add(entity);
-            await _unitOfWork.SaveChangesAsync();
-            return entity;
+            try
+            {
+                dbSet.Add(entity);
+                await _unitOfWork.SaveChangesAsync();
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                //_unitOfWork.Dispose();
+            }
+
         }
 
         public async Task Delete(T entity)
         {
-            var data = await dbSet.FindAsync(entity);
-            if (data != null)
+            try
             {
-                dbSet.Remove(data);
-                await _unitOfWork.SaveChangesAsync();
+                var data = await dbSet.FindAsync(entity);
+                if (data != null)
+                {
+                    dbSet.Remove(data);
+                    await _unitOfWork.SaveChangesAsync();
+                }
             }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+               // _unitOfWork.Dispose();
+            }
+
 
 
         }
 
         public async Task<T> Update(T entity)
         {
-            dbSet.Update(entity);
-
-            // _unitOfWork.Context.Update(entity);
-
             try
             {
+                dbSet.Update(entity);
                 await _unitOfWork.SaveChangesAsync();
 
                 return entity;
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
-                throw;
+                throw ex;
+            }
+            finally
+            {
+                //_unitOfWork.Dispose();
             }
 
         }

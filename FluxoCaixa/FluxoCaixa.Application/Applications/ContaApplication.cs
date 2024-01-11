@@ -54,5 +54,22 @@ namespace FluxoCaixa.Application.Applications
 
             await _contaRepository.Update(conta);
         }
+
+        public async Task<ActionResult<Conta>> AtualizaSaldo(Guid contaId, decimal valor)
+        {
+            Conta contaUpdated = new();
+
+            var conta = await _contaRepository.GetById(contaId);
+
+            if (conta != null)
+            {
+                conta.Saldo += valor;
+                conta.SetUpdateAtDate();
+                
+                contaUpdated = await _contaRepository.Update(conta);
+            }
+
+            return contaUpdated;
+        }
     }
 }
