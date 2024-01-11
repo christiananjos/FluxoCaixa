@@ -13,6 +13,6 @@ Christian Anjos
 
 - CRUD de Contas, Tipo Transacao e Transação.
 - Fluxo completo de uma Transação com atualiação de Saldo da Conta origem.
-- Mensageria RabbitMq
+- Mensageria RabbitMQ
 - Autenticação usando JWT
 
