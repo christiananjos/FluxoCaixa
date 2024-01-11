@@ -11,8 +11,8 @@ Christian Anjos
 
 ## Funcionalidades
 
-- Cadastro de Contas, Tipo Transacao e Efetivação de uma Transação
-- Fluxo completo de uma Transação com atualiação de Saldo da Conta destino
+- CRUD de Contas, Tipo Transacao e Transação.
+- Fluxo completo de uma Transação com atualiação de Saldo da Conta origem.
 - Mensageria RabbitMq
 - Autenticação usando JWT
 
