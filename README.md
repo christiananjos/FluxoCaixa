@@ -13,6 +13,7 @@ Christian Anjos
 
 - CRUD de Contas, Tipo Transacao e Transação.
 - Fluxo completo de uma Transação com atualização de Saldo da Conta origem.
+- Relatório Dinamico das Transações.
 - Mensageria RabbitMQ (Em Andamento)
 - Autenticação usando JWT (To Do)
 - Testes Unitarios (To Do)
