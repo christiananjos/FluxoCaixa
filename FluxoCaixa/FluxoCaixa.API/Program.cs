@@ -3,6 +3,8 @@ using FluxoCaixa.Application.Interfaces;
 using FluxoCaixa.Data.Context;
 using FluxoCaixa.Data.Interfaces;
 using FluxoCaixa.Data.Repository;
+using FluxoCaixa.Services.Interfaces;
+using FluxoCaixa.Services.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +24,9 @@ builder.Services.AddScoped<ITipoTransacaoApplication, TipoTransacaoApplication>(
 builder.Services.AddScoped<IContaRepository, ContaRepository>();
 builder.Services.AddScoped<ITransacaoRepository, TransacaoRepository>();
 builder.Services.AddScoped<ITipoTransacaoRepository, TipoTransacaoRepository>();
+
+//Services
+builder.Services.AddScoped<IRabbitMQService, RabbitMQService>();
 
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();

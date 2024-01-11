@@ -1,7 +1,9 @@
 ﻿using FluxoCaixa.Application.Interfaces;
 using FluxoCaixa.Data.Interfaces;
 using FluxoCaixa.Domain.Entities;
+using FluxoCaixa.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace FluxoCaixa.Application.Applications
 {
@@ -9,11 +11,13 @@ namespace FluxoCaixa.Application.Applications
     {
         private readonly ITransacaoRepository _transacaoRepository;
         private readonly IContaApplication _contaApplication;
+        private readonly IRabbitMQService _rabbitMQService;
 
-        public TransacaoApplication(ITransacaoRepository transacaoRepository, IContaApplication contaApplication)
+        public TransacaoApplication(ITransacaoRepository transacaoRepository, IContaApplication contaApplication, IRabbitMQService rabbitMQService)
         {
             _transacaoRepository = transacaoRepository;
             _contaApplication = contaApplication;
+            _rabbitMQService = rabbitMQService;
         }
 
         public async Task<ActionResult<Transacao>> Add(Transacao entity)
@@ -27,7 +31,7 @@ namespace FluxoCaixa.Application.Applications
             await _contaApplication.AtualizaSaldo(entity.ContaId, entity.Valor);
 
             //Ao finalizar enviar mensagem RabbitMQ com retornoTransacao
-
+            _rabbitMQService.PublicarMensagem(JsonConvert.SerializeObject(retornoTransacao));
 
             return retornoTransacao;
         }

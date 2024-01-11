@@ -11,24 +11,38 @@ namespace FluxoCaixa.Services.Services
 
         public RabbitMQService()
         {
-            var factory = new ConnectionFactory
-            {
-                HostName = "localhost", // Substitua pelo endereço do seu servidor RabbitMQ
-                Port = 5672,
-                UserName = "guest",
-                Password = "guest"
-            };
-
-            _connection = factory.CreateConnection();
-            _channel = _connection.CreateModel();
+           
         }
 
         public void PublicarMensagem(string mensagem)
         {
-            _channel.QueueDeclare("saldo_queue", durable: true, false, false, null);
-            var body = Encoding.UTF8.GetBytes(mensagem);
+            try
+            {
+                var factory = new ConnectionFactory { HostName = "localhost" };
+                using var connection = factory.CreateConnection();
+                using var channel = connection.CreateModel();
 
-            _channel.BasicPublish(exchange: "", routingKey: "saldo_queue", basicProperties: null, body: body);
+                channel.QueueDeclare(queue: "Queue_transacao",
+                                     durable: false,
+                                     exclusive: false,
+                                     autoDelete: false,
+                                     arguments: null);
+
+                const string message = "Hello World!";
+
+                var body = Encoding.UTF8.GetBytes(mensagem);
+
+                channel.BasicPublish(exchange: string.Empty,
+                                     routingKey: "Queue_transacao",
+                                     basicProperties: null,
+                                     body: body);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+            
         }
     }
 }

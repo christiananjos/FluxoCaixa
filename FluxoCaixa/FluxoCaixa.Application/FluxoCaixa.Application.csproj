@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\FluxoCaixa.Data\FluxoCaixa.Data.csproj" />
     <ProjectReference Include="..\FluxoCaixa.Domain\FluxoCaixa.Domain.csproj" />
+    <ProjectReference Include="..\FluxoCaixa.Service\FluxoCaixa.Services.csproj" />
   </ItemGroup>
 
 </Project>
