@@ -13,6 +13,9 @@ namespace FluxoCaixa.Data.Context.Configurations
             builder.Property(o => o.Descricao)
                 .HasMaxLength(100)
                 .IsRequired();
+
+            builder.Property(o => o.IdInterno)
+                .IsRequired();
         }
     }
 }

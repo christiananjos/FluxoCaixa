@@ -33,6 +33,10 @@ namespace FluxoCaixa.Data.Repository
             }
         }
 
-        public async Task SaveChangesAsync() => await _dbContext.SaveChangesAsync();
+        public async Task SaveChangesAsync()
+        {
+            await _dbContext.SaveChangesAsync();
+            Dispose();
+        }
     }
 }

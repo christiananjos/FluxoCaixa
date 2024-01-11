@@ -1,6 +1,5 @@
 using FluxoCaixa.Application.Applications;
 using FluxoCaixa.Application.Interfaces;
-using FluxoCaixa.Data;
 using FluxoCaixa.Data.Context;
 using FluxoCaixa.Data.Interfaces;
 using FluxoCaixa.Data.Repository;
@@ -17,10 +16,12 @@ builder.Services.AddSwaggerGen();
 //Applications
 builder.Services.AddScoped<IContaApplication, ContaApplication>();
 builder.Services.AddScoped<ITransacaoApplication, TransacaoApplication>();
+builder.Services.AddScoped<ITipoTransacaoApplication, TipoTransacaoApplication>();
 
 //Repositories
 builder.Services.AddScoped<IContaRepository, ContaRepository>();
 builder.Services.AddScoped<ITransacaoRepository, TransacaoRepository>();
+builder.Services.AddScoped<ITipoTransacaoRepository, TipoTransacaoRepository>();
 
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();

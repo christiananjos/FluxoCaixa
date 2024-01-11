@@ -13,6 +13,7 @@ namespace FluxoCaixa.Data.Context
         public FluxoContext(DbContextOptions<FluxoContext> contextOptions) : base(contextOptions) { }
 
         public DbSet<Conta> Contas { get; set; }
+        public DbSet<TipoTransacao> TipoTransacoes { get; set; }
         public DbSet<Transacao> Transacoes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
