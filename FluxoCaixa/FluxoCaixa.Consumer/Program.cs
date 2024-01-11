@@ -27,5 +27,3 @@ consumer.Received += (model, ea) =>
 channel.BasicConsume(queue: "Queue_transacao",
                      autoAck: true,
                      consumer: consumer);
-
-Console.WriteLine("Hello, World!");
