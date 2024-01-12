@@ -4,6 +4,7 @@ using FluxoCaixa.Domain.Entities;
 using FluxoCaixa.Domain.Input;
 using Microsoft.AspNetCore.Mvc;
 using Syncfusion.Pdf.Graphics;
+using System;
 
 namespace FluxoCaixa.API.Controllers
 {
@@ -47,13 +48,14 @@ namespace FluxoCaixa.API.Controllers
         }
 
         [HttpGet("GetStatement")]
-        public ActionResult GetStatement(Guid? contaId, Guid? tipoTransacaoId, DateTime? createAt)
+        public async Task<ActionResult> GetStatement(Guid? contaId, Guid? tipoTransacaoId, DateTime? createAt)
         {
-            var pdf = _transacaoApplication.GetStatement(contaId, tipoTransacaoId, createAt);
+            var pdf = await _transacaoApplication.GetStatement(contaId, tipoTransacaoId, createAt);
 
             var dataStream = new MemoryStream(pdf);
 
-            return File(dataStream, "application/pdf", "Teste.pdf");
+            string fileName = "extrato" + DateTime.Now.Date.ToString("d") + ".pdf";
+            return File(dataStream, "application/pdf", fileName);
         }
 
 

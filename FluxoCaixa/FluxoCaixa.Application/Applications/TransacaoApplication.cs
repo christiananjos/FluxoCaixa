@@ -97,7 +97,7 @@ namespace FluxoCaixa.Application.Applications
 
         }
 
-        public byte[] GetStatement(Guid? contaId, Guid? tipoTransacaoId, DateTime? createAt)
+        public async Task<byte[]> GetStatement(Guid? contaId, Guid? tipoTransacaoId, DateTime? createAt)
         {
             var html = @"<h1>Hello World!</h1>";
 
