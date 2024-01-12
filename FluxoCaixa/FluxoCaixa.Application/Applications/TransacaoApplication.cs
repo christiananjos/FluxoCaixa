@@ -101,7 +101,7 @@ namespace FluxoCaixa.Application.Applications
         {
             var html = @"<b>Hello World</b> from EVO PDF !";
 
-            HtmlToPdfConverter converter = new HtmlToPdfConverter();
+            HtmlToPdfConverter converter = new();
 
             byte[] htmlToPdfBuffer = converter.ConvertHtml(html, null);
 
