@@ -20,7 +20,7 @@ namespace FluxoCaixa.Data.Repository
             var transacoes = await dbSet
                 .Where(x => transacao.ContaId == null || x.ContaId == transacao.ContaId)
                 .Where(x => transacao.TipoTransacaoId == null || x.TipoTransacaoId == transacao.TipoTransacaoId)
-                .Where(x => transacao.CreateAt == null || x.CreateAt == transacao.CreateAt)
+                .Where(x => transacao.CreateAt == null || x.CreateAt!.Value.Date == transacao.CreateAt.Value.Date)
                 .ToListAsync();
 
             return transacoes;
