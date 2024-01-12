@@ -1,6 +1,5 @@
 ﻿using FluxoCaixa.Domain.Entities;
 using FluxoCaixa.Domain.Input;
-using System.Data.Entity.Infrastructure;
 
 namespace FluxoCaixa.Data.Interfaces
 {
