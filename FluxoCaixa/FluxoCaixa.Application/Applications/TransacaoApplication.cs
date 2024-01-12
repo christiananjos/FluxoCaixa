@@ -61,7 +61,7 @@ namespace FluxoCaixa.Application.Applications
 
             var transacoes = await _transacaoRepository.GetFilter(filter);
 
-            return transacoes;
+            return transacoes.ToList();
 
         }
 

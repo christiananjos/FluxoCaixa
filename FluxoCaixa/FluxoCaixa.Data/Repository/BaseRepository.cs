@@ -81,9 +81,5 @@ namespace FluxoCaixa.Data.Repository
         public async Task<T> GetById(Guid id) => await dbSet.FindAsync(id);
 
         public async Task<IEnumerable<T>> GetAll() => await dbSet.ToListAsync();
-
-       
-
-
     }
 }
