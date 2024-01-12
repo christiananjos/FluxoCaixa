@@ -6,7 +6,7 @@ Esse é um projeto de API exemplo de um Fluxo de Caixa baseado em Repository Pat
 
 ## Autor
 Christian Anjos
-- [@christiananjos](https://www.linkedin.com/in/christian-douglasdev)
+-Linkedin: [@christiananjos](https://www.linkedin.com/in/christian-douglasdev)
 
 
 ## Funcionalidades
