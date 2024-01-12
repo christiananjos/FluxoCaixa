@@ -13,7 +13,8 @@ namespace FluxoCaixa.Data.Repository
 
         public async Task<IEnumerable<Transacao>> GetFilter(TransacaoFilter transacao)
         {
-            return await dbSet.Where(x => x.ContaId == transacao.ContaId)
+            return await dbSet
+                .Where(x => x.ContaId == transacao.ContaId)
                 .ToListAsync();
         }
     }
