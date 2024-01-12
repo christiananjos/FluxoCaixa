@@ -99,11 +99,11 @@ namespace FluxoCaixa.Application.Applications
 
         public async Task<byte[]> GetStatement(Guid? contaId, Guid? tipoTransacaoId, DateTime? createAt)
         {
-            var html = @"<h1>Hello World!</h1>";
+            var html = @"<b>Hello World</b> from EVO PDF !";
 
             HtmlToPdfConverter converter = new HtmlToPdfConverter();
 
-            byte[] htmlToPdfBuffer = converter.ConvertHtml("<b>Hello World</b> from EVO PDF !", null);
+            byte[] htmlToPdfBuffer = converter.ConvertHtml(html, null);
 
             return htmlToPdfBuffer;
         }
