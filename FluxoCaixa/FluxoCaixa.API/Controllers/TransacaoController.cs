@@ -3,6 +3,7 @@ using FluxoCaixa.Application.Interfaces;
 using FluxoCaixa.Domain.Entities;
 using FluxoCaixa.Domain.Input;
 using Microsoft.AspNetCore.Mvc;
+using Syncfusion.Pdf.Graphics;
 
 namespace FluxoCaixa.API.Controllers
 {
@@ -43,6 +44,16 @@ namespace FluxoCaixa.API.Controllers
         public async Task<ActionResult<IEnumerable<Transacao>>> GetFilter(Guid? contaId, Guid? tipoTransacaoId, DateTime? createAt)
         {
             return await _transacaoApplication.GetFilter(contaId, tipoTransacaoId, createAt);
+        }
+
+        [HttpGet("GetStatement")]
+        public ActionResult GetStatement(Guid? contaId, Guid? tipoTransacaoId, DateTime? createAt)
+        {
+            var pdf = _transacaoApplication.GetStatement(contaId, tipoTransacaoId, createAt);
+
+            var dataStream = new MemoryStream(pdf);
+
+            return File(dataStream, "application/pdf", "Teste.pdf");
         }
 
 

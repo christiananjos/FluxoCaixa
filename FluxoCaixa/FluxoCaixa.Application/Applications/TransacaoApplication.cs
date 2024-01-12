@@ -1,11 +1,15 @@
-﻿using FluxoCaixa.Application.Interfaces;
+﻿using EvoPdf;
+using FluxoCaixa.Application.Interfaces;
 using FluxoCaixa.Data.Interfaces;
 using FluxoCaixa.Domain.Entities;
 using FluxoCaixa.Domain.Input;
 using FluxoCaixa.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Data.Entity.Infrastructure;
+using Syncfusion.Drawing;
+using Syncfusion.Pdf;
+using Syncfusion.Pdf.Graphics;
+using System.IO;
 
 namespace FluxoCaixa.Application.Applications
 {
@@ -91,6 +95,17 @@ namespace FluxoCaixa.Application.Applications
             return transacaoUpdated;
 
 
+        }
+
+        public byte[] GetStatement(Guid? contaId, Guid? tipoTransacaoId, DateTime? createAt)
+        {
+            var html = @"<h1>Hello World!</h1>";
+
+            HtmlToPdfConverter converter = new HtmlToPdfConverter();
+
+            byte[] htmlToPdfBuffer = converter.ConvertHtml("<b>Hello World</b> from EVO PDF !", null);
+
+            return htmlToPdfBuffer;
         }
     }
 }
