@@ -6,15 +6,6 @@ namespace FluxoCaixa.Services.Services
 {
     public class RabbitMQService : IRabbitMQService
     {
-        private readonly IConnection _connection;
-        private readonly IModel _channel;
-
-        public RabbitMQService(IConnection connection, IModel channel)
-        {
-            _connection = connection;
-            _channel = channel;
-        }
-
         public void PublicarMensagem(string mensagem)
         {
             try
