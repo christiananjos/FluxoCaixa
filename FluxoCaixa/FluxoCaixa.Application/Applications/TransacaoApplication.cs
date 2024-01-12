@@ -1,6 +1,7 @@
 ﻿using FluxoCaixa.Application.Interfaces;
 using FluxoCaixa.Data.Interfaces;
 using FluxoCaixa.Domain.Entities;
+using FluxoCaixa.Domain.Input;
 using FluxoCaixa.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -46,6 +47,14 @@ namespace FluxoCaixa.Application.Applications
         public async Task<ActionResult<Transacao>> GetById(Guid id)
         {
             return await _transacaoRepository.GetById(id);
+        }
+
+        public async Task<ActionResult<IEnumerable<Transacao>>> GetFilter(TransacaoFilter transacao)
+        {
+            var transacoes =  await _transacaoRepository.GetFilter(transacao);
+
+            return transacoes.ToList();
+           
         }
 
         public async Task Remove(Guid id)

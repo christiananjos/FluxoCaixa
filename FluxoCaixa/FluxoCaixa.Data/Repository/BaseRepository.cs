@@ -1,12 +1,10 @@
-﻿using FluxoCaixa.Data.Context;
-using FluxoCaixa.Data.Interfaces;
+﻿using FluxoCaixa.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace FluxoCaixa.Data.Repository
 {
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        protected readonly FluxoContext _dbContext;
         protected DbSet<T> dbSet;
         private readonly IUnitOfWork _unitOfWork;
 
@@ -15,13 +13,6 @@ namespace FluxoCaixa.Data.Repository
             _unitOfWork = unitOfWork;
             dbSet = _unitOfWork.Context.Set<T>();
 
-        }
-
-        public async Task<T> GetById(Guid id) => await dbSet.FindAsync(id);
-
-        public async Task<IEnumerable<T>> GetAll()
-        {
-            return await dbSet.ToListAsync();
         }
 
         public async Task<T> Add(T entity)
@@ -60,7 +51,7 @@ namespace FluxoCaixa.Data.Repository
             }
             finally
             {
-               // _unitOfWork.Dispose();
+                // _unitOfWork.Dispose();
             }
 
 
@@ -86,6 +77,12 @@ namespace FluxoCaixa.Data.Repository
             }
 
         }
+
+        public async Task<T> GetById(Guid id) => await dbSet.FindAsync(id);
+
+        public async Task<IEnumerable<T>> GetAll() => await dbSet.ToListAsync();
+
+       
 
 
     }

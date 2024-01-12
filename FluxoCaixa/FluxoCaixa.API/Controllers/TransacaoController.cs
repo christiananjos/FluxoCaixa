@@ -32,7 +32,7 @@ namespace FluxoCaixa.API.Controllers
             return await _transacaoApplication.GetAll();
         }
 
-        [HttpGet("id")]
+        [HttpGet("GetById")]
         public async Task<ActionResult<Transacao>> GetById(Guid id)
         {
             return await _transacaoApplication.GetById(id);
@@ -42,7 +42,7 @@ namespace FluxoCaixa.API.Controllers
         [HttpPost("GetFilter")]
         public async Task<ActionResult<IEnumerable<Transacao>>> GetFilter([FromBody] TransacaoFilter transacaoFilter)
         {
-            return await _transacaoApplication.GetAll();
+            return await _transacaoApplication.GetFilter(transacaoFilter);
         }
 
 
