@@ -6,6 +6,6 @@ namespace FluxoCaixa.Application.Interfaces
 {
     public interface ITransacaoApplication : IBaseApplication<Transacao>
     {
-        Task<ActionResult<IEnumerable<Transacao>>> GetFilter(TransacaoFilter transacao);
+        Task<ActionResult<IEnumerable<Transacao>>> GetFilter(Guid? contaId, Guid? tipoTransacaoId, DateTime? createAt);
     }
 }

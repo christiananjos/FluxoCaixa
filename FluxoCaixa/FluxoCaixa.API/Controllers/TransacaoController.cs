@@ -39,10 +39,10 @@ namespace FluxoCaixa.API.Controllers
         }
 
 
-        [HttpPost("GetFilter")]
-        public async Task<ActionResult<IEnumerable<Transacao>>> GetFilter([FromBody] TransacaoFilter transacaoFilter)
+        [HttpGet("GetFilter")]
+        public async Task<ActionResult<IEnumerable<Transacao>>> GetFilter(Guid? contaId, Guid? tipoTransacaoId, DateTime? createAt)
         {
-            return await _transacaoApplication.GetFilter(transacaoFilter);
+            return await _transacaoApplication.GetFilter(contaId, tipoTransacaoId, createAt);
         }
 
 

@@ -1,7 +1,9 @@
 ﻿using FluxoCaixa.Data.Interfaces;
 using FluxoCaixa.Domain.Entities;
 using FluxoCaixa.Domain.Input;
+using Microsoft.EntityFrameworkCore;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 
 namespace FluxoCaixa.Data.Repository
 {
@@ -13,9 +15,21 @@ namespace FluxoCaixa.Data.Repository
 
         public async Task<IEnumerable<Transacao>> GetFilter(TransacaoFilter transacao)
         {
-            return await dbSet
-                .Where(x => x.ContaId == transacao.ContaId)
-                .ToListAsync();
+            try
+            {
+                var transacoes = await dbSet
+                    .Where(x => transacao.ContaId != null && x.ContaId == transacao.ContaId
+                    && transacao.TipoTransacaoId != null && x.TipoTransacaoId == transacao.TipoTransacaoId
+                    && transacao.CreateAt != null && x.CreateAt == transacao.CreateAt)
+                    .ToListAsync();
+
+                return transacoes;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
         }
     }
 

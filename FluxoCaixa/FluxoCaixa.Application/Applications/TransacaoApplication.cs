@@ -5,6 +5,7 @@ using FluxoCaixa.Domain.Input;
 using FluxoCaixa.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Data.Entity.Infrastructure;
 
 namespace FluxoCaixa.Application.Applications
 {
@@ -49,12 +50,19 @@ namespace FluxoCaixa.Application.Applications
             return await _transacaoRepository.GetById(id);
         }
 
-        public async Task<ActionResult<IEnumerable<Transacao>>> GetFilter(TransacaoFilter transacao)
+        public async Task<ActionResult<IEnumerable<Transacao>>> GetFilter(Guid? contaId, Guid? tipoTransacaoId, DateTime? createAt)
         {
-            var transacoes =  await _transacaoRepository.GetFilter(transacao);
+            var filter = new TransacaoFilter()
+            {
+                ContaId = contaId,
+                TipoTransacaoId = tipoTransacaoId,
+                CreateAt = createAt
+            };
 
-            return transacoes.ToList();
-           
+            var transacoes = await _transacaoRepository.GetFilter(filter);
+
+            return transacoes;
+
         }
 
         public async Task Remove(Guid id)
