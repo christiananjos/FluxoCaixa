@@ -18,6 +18,8 @@ namespace FluxoCaixa.Data.Repository
         public async Task<IEnumerable<Transacao>> GetFilter(TransacaoFilter transacao)
         {
             var transacoes = await dbSet
+                .Include(x=> x.Conta)
+                .Include(x=> x.TipoTransacao)                        
                 .Where(x => transacao.ContaId == null || x.ContaId == transacao.ContaId)
                 .Where(x => transacao.TipoTransacaoId == null || x.TipoTransacaoId == transacao.TipoTransacaoId)
                 .Where(x => transacao.CreateAt == null || x.CreateAt!.Value.Date == transacao.CreateAt.Value.Date)

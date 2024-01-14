@@ -10,6 +10,7 @@ using Syncfusion.Drawing;
 using Syncfusion.Pdf;
 using Syncfusion.Pdf.Graphics;
 using System.IO;
+using System.Text;
 
 namespace FluxoCaixa.Application.Applications
 {
@@ -99,13 +100,103 @@ namespace FluxoCaixa.Application.Applications
 
         public async Task<byte[]> GetStatement(Guid? contaId, Guid? tipoTransacaoId, DateTime? createAt)
         {
-            var html = @"<b>Hello World</b> from EVO PDF !";
+            var filter = new TransacaoFilter()
+            {
+                ContaId = contaId,
+                TipoTransacaoId = tipoTransacaoId,
+                CreateAt = createAt
+            };
+
+            var transacoes = await _transacaoRepository.GetFilter(filter);
 
             HtmlToPdfConverter converter = new();
 
-            byte[] htmlToPdfBuffer = converter.ConvertHtml(html, null);
+            byte[] htmlToPdfBuffer = converter.ConvertHtml(await BuildHtmlTable(transacoes), null);
 
             return htmlToPdfBuffer;
+        }
+
+        public async Task<string> BuildHtmlTable(IEnumerable<Transacao> transacoes)
+        {
+            StringBuilder sb = new();
+            sb.AppendLine("<!DOCTYPE html>");
+
+            sb.AppendLine("<html>");
+            sb.AppendLine("<head>");
+
+
+            //Css
+            sb.AppendLine(
+                "<style>" +
+                    "table {" +
+                        "font-family: arial, sans-serif;" +
+                        "border-collapse: collapse;" +
+                        "width: 100%;" +
+                        "}" +
+                    "td, th {" +
+                        "border: 1px solid #dddddd;" +
+                        "text-align: left;" +
+                        "padding: 8px;" +
+                        "}" +
+                    "tr:nth-child(even) {" +
+                        "background-color: #dddddd;" +
+                        "}" +
+                "</style>");
+
+            sb.AppendLine("</head>");
+
+            sb.AppendLine("<body>");
+
+            sb.AppendLine("<h4>");
+            sb.AppendLine("Extrato Consolidado " + transacoes.Min(x=> x.CreateAt!.Value.Date.ToString("d")) + " Até " + transacoes.Max(x => x.CreateAt!.Value.Date.ToString("d")));
+            sb.AppendLine("<h4>");
+
+            //Table Begin
+            sb.AppendLine("<table>");
+            sb.AppendLine("<tr>");
+
+            //Columns
+            sb.AppendLine("<th>Cliente</th>");
+            sb.AppendLine("<th>Tipo de Transação</th>");
+            sb.AppendLine("<th>Descrição</th>");
+            sb.AppendLine("<th>Valor</th>");
+            sb.AppendLine("<th>Data Transação</th>");
+
+            sb.AppendLine("</tr>");
+
+
+            //Rows
+            foreach (var transacao in transacoes)
+            {
+                sb.Append("<tr>");
+                sb.Append("<td>");
+                sb.Append(transacao.Conta.Nome);
+
+                sb.Append("<td>");
+                sb.Append(transacao.TipoTransacao.Descricao);
+                sb.Append("</td>");
+
+                sb.Append("<td>");
+                sb.Append(transacao.Descricao);
+                sb.Append("</td>");
+
+                sb.Append("<td>");
+                sb.Append(transacao.Valor.ToString());
+                sb.Append("</td>");
+
+                sb.Append("<td>");
+                sb.Append(transacao.CreateAt.ToString());
+                sb.Append("</td>");
+
+                sb.Append("</tr>");
+            }
+
+
+            sb.AppendLine("</table>");
+            sb.AppendLine("</body>");
+            sb.AppendLine("</html>");
+
+            return sb.ToString();
         }
     }
 }
