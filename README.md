@@ -1,7 +1,7 @@
 
 # Fluxo de Caixa .Net Core 6
 
-Esse é um projeto de API exemplo de um Fluxo de Caixa baseado em Repository Pattern, RabbitMq e JWT
+Esse é um projeto de API exemplificando um Fluxo de Caixa baseado em Repository Pattern, RabbitMq e JWT
 
 
 ## Autor
