@@ -11,11 +11,11 @@ Christian Anjos
 
 ## Funcionalidades
 
-- CRUD de Contas, Tipo Transacao e Transação.
+- CRUD de Contas, Tipo de Transacao e Transação.
 - Fluxo completo de uma Transação com atualização de Saldo da Conta origem.
 - Relatório Dinamico das Transações.
-- Extrato das Transações Dinamico em PDF (In Progress)
-- Mensageria RabbitMQ
+- Extrato das Transações em PDF (In Progress)
+- Mensageria RabbitMQ - Producer e Consumer
 - Autenticação usando JWT (To Do)
 - Testes Unitarios (To Do)
 
